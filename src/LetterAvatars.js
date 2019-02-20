@@ -28,15 +28,21 @@ function LetterAvatars(props) {
 
   return (
     <Grid container justify="center" alignItems="center">
-      <Avatar className={classes.avatar}>{props.children}</Avatar>
+      <Avatar className={classes.orangeAvatar}>{makeTbut(props.children)}</Avatar>
     </Grid>
   );
 }
 
 function makeTbut(sSt){
   var stBut='';
-  if (sSt.length > 0){
-
+  var stAr=sSt.split(/\s/);
+  
+  if (stAr.length > 1){
+    stAr.forEach(element => {
+      stBut=stBut + ' ' + element[0].toUpperCase();
+    });
+  }else{
+    stBut=sSt[0].toUpperCase();
   }
   return stBut;
 }
