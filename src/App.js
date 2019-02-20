@@ -1,15 +1,22 @@
 import React, { Component } from 'react';
+import logo from './logo.svg';
+import './App.css';
 
+import MiniDrawer from './MiniDrawer';
 
 class App extends Component {
   render() {
     return (
-      <div>
-        Chat
-
+      <div className="App">
+       {/* <header className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+          
+          
+    </header>  */}
+        <MiniDrawer />
       </div>
     );
-  }/*  */
+  }
 }
 
 export default App;
