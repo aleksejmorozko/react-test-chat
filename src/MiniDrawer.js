@@ -123,7 +123,7 @@ class MiniDrawer extends React.Component {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" color="inherit" noWrap>
-            <LetterAvatars children='React Talks'/>
+            <LetterAvatars children='React Talks' avType='name'/>
             </Typography>
           </Toolbar>
         </AppBar>
@@ -148,9 +148,9 @@ class MiniDrawer extends React.Component {
           </div>
           <Divider />
           <List>
-            {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+            {['Alex R', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+              <ListItem button key={text}>               
+                <ListItemIcon><LetterAvatars children={text} avType='chat'/></ListItemIcon>
                 <ListItemText primary={text} />
               </ListItem>
             ))}
@@ -158,8 +158,12 @@ class MiniDrawer extends React.Component {
           <Divider />
           <List>
             {['All mail', 'Trash', 'Spam'].map((text, index) => (
-              <ListItem button key={text}>
+              /* <ListItem button key={text}>
                 <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItem> */
+              <ListItem button key={text}>               
+                <ListItemIcon><LetterAvatars children={text} avType='chat'/></ListItemIcon>
                 <ListItemText primary={text} />
               </ListItem>
             ))}

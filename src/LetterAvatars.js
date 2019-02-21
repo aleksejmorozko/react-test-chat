@@ -4,8 +4,12 @@ import { withStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import deepOrange from '@material-ui/core/colors/deepOrange';
 import deepPurple from '@material-ui/core/colors/deepPurple';
+import green from '@material-ui/core/colors/green';
+import blue from '@material-ui/core/colors/blue';
+import blueGrey from '@material-ui/core/colors/blueGrey';
 import Grid from '@material-ui/core/Grid';
 import { StepButton } from '@material-ui/core';
+
 
 const styles = {
   avatar: {
@@ -21,17 +25,39 @@ const styles = {
     color: '#fff',
     backgroundColor: deepPurple[500],
   },
+  blueGrey: {
+    margin: 10,
+    color: '#fff',
+    backgroundColor: blueGrey[500],
+  },
+  blue: {
+    margin: 10,
+    color: '#fff',
+    backgroundColor: blue[500],
+  },
+  green: {
+    margin: 0,
+    color: '#fff',
+    backgroundColor: green[500],
+  },
 };
 
 function LetterAvatars(props) {
   const { classes } = props;
-
+  var avColor= classes.green;
+  var pName='';
+  switch (props.avType){
+    case 'chat': avColor = classes.green; break;
+    case 'name': avColor = classes.blue; pName=props.children; break;
+  }
+  
   return (
     <Grid container justify="center" alignItems="center">
-      <Avatar className={classes.orangeAvatar}>{makeTbut(props.children)}</Avatar>
+      <Avatar className={avColor}>{makeTbut(props.children)}</Avatar>{pName}
     </Grid>
   );
 }
+
 
 function makeTbut(sSt){
   var stBut='';
@@ -39,7 +65,7 @@ function makeTbut(sSt){
   
   if (stAr.length > 1){
     stAr.forEach(element => {
-      stBut=stBut + ' ' + element[0].toUpperCase();
+      stBut=stBut + element[0].toUpperCase();
     });
   }else{
     stBut=sSt[0].toUpperCase();
