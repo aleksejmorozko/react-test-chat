@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 import MiniDrawer from './MiniDrawer';
@@ -7,13 +6,12 @@ import MiniDrawer from './MiniDrawer';
 class App extends Component {
   render() {
     return (
-      <div className="App">
-       {/* <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+      <div>
+        <div className="App">
+         
+           <MiniDrawer /> 
+        </div>  
           
-          
-    </header>  */}
-        <MiniDrawer />
       </div>
     );
   }

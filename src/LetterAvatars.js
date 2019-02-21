@@ -8,7 +8,7 @@ import green from '@material-ui/core/colors/green';
 import blue from '@material-ui/core/colors/blue';
 import blueGrey from '@material-ui/core/colors/blueGrey';
 import Grid from '@material-ui/core/Grid';
-import { StepButton } from '@material-ui/core';
+
 
 
 const styles = {
@@ -44,11 +44,12 @@ const styles = {
 
 function LetterAvatars(props) {
   const { classes } = props;
-  var avColor= classes.green;
   var pName='';
+  var avColor='';
   switch (props.avType){
     case 'chat': avColor = classes.green; break;
     case 'name': avColor = classes.blue; pName=props.children; break;
+    default: avColor= classes.green;
   }
   
   return (

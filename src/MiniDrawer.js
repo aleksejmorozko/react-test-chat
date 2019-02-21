@@ -16,10 +16,10 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+
 
 import LetterAvatars from './LetterAvatars';
+import SimpleBottomNavigation from './SimpleBottomNavigation';
 
 
 const drawerWidth = 240;
@@ -30,6 +30,15 @@ const styles = theme => ({
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
+    transition: theme.transitions.create(['width', 'margin'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+  },
+  bottomBar: {
+    position: 'fixed',
+    bottom: 0,
+    zIndex: theme.zIndex.drawer + 2,
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -103,8 +112,8 @@ class MiniDrawer extends React.Component {
     const { classes, theme } = this.props;
 
     return (
-      <div className={classes.root}>
-        <CssBaseline />
+      <div className={classes.root}>      
+        <CssBaseline  />        
         <AppBar
           position="fixed"
           className={classNames(classes.appBar, {
@@ -148,27 +157,15 @@ class MiniDrawer extends React.Component {
           </div>
           <Divider />
           <List>
-            {['Alex R', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+            {['Alex R', 'Starred', 'Send email', 'Drafts', 'All mail', 'Trash', 'Spam', 'Starred', 'Send email', 'Drafts', 'All mail', 'Starred', 'Send email', 'Drafts', 'All mail'].map((text, index) => (
               <ListItem button key={text}>               
                 <ListItemIcon><LetterAvatars children={text} avType='chat'/></ListItemIcon>
                 <ListItemText primary={text} />
               </ListItem>
             ))}
           </List>
-          <Divider />
-          <List>
-            {['All mail', 'Trash', 'Spam'].map((text, index) => (
-              /* <ListItem button key={text}>
-                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem> */
-              <ListItem button key={text}>               
-                <ListItemIcon><LetterAvatars children={text} avType='chat'/></ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
-          </List>
-        </Drawer>
+          <Divider />                 
+        </Drawer>            
         <main className={classes.content}>
           <div className={classes.toolbar} />
           <Typography paragraph>
@@ -194,9 +191,12 @@ class MiniDrawer extends React.Component {
             sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis eleifend. Commodo
             viverra maecenas accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam
             ultrices sagittis orci a.
-          </Typography>
-        </main>
-      </div>
+          </Typography>       
+          <div className={classes.bottomBar}>        
+            <SimpleBottomNavigation  />
+          </div>  
+        </main>       
+      </div> 
     );
   }
 }
