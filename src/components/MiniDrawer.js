@@ -19,6 +19,8 @@ import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import RestoreIcon from '@material-ui/icons/Restore';
 import ExploreIcon from '@material-ui/icons/Explore';
 import AddIcon from '@material-ui/icons/Add';
+import Input from '@material-ui/core/Input';
+import Paper from '@material-ui/core/Paper';
 
 const drawerWidth = 240;
 
@@ -40,7 +42,7 @@ const styles = theme => ({
   },
   drawerPaper: {
     width: drawerWidth,
-    position: 'relative',
+    
     height: '100%',
   },
   toolbar: theme.mixins.toolbar,
@@ -52,6 +54,7 @@ const styles = theme => ({
   chatList: {
     height: 'calc(100% - 56px)',
     overflowY: 'scroll',
+  
   },
   drawerHeader:{
     ... theme.mixins.toolbar,
@@ -71,6 +74,7 @@ const styles = theme => ({
     paddingTop: '64px',
     height: '100%',
     overflow: 'hidden',
+    
   },
   messagesWrapper: {
     overflowX: 'scroll',
@@ -84,8 +88,8 @@ const styles = theme => ({
     left:'auto',
     right: 0,
     bottom: 0,
-    width: 'calc(100%- drawerWidth)',
-    padding: theme.spacing.unit *3,
+    width: `calc(100% - ${drawerWidth+60}px)`,
+    padding: '30px 30px',
   },
   messageInput: {
     padding: theme.spacing.unit * 2,
@@ -108,7 +112,13 @@ const styles = theme => ({
   messageFromMe: {
     marginRight: theme.spacing.unit * 2,
     backgroundColor: '#e6dcff',
-  }
+  },
+  bottomNavigation:{
+    position: "fixed",
+    left: 0,
+    bottom: 0,    
+    padding: theme.spacing.unit *3,
+  },
 });
 
 function PermanentDrawerLeft(props) {
@@ -131,16 +141,16 @@ function PermanentDrawerLeft(props) {
           paper: classes.drawerPaper,
         }}       
       > 
-       <div className={classes.drawerHeader}>
+        <div className={classes.drawerHeader}>
         <TextField 
           fullWidth
           margin='normal'
           placeholder="Поиск"/>  
-      </div>
+        </div>
         <Divider />
     
         <List className={classes.chatList}>
-          {['All mail', 'Trash', 'Spam', 'Trash', 'Spam', 'Trash', 'Spam', 'Trash', 'Spam', 'Trash', 'Spam', 'Trash', 'Spam', 'Trash', 'Spam', 'Trash', 'Spam', 'Trash', 'Spam', 'Trash', 'Spam', 'Trash', 'Spam'].map((text, index) => (
+          {['All mail', 'Trash', 'Spam', 'Trash', 'Spam', 'Trash', 'Spam', 'Trash', 'Spam', 'Trash', 'Spam', 'Trash', 'Spam', 'Trash', 'Spam', 'Trash', 'Spam', 'Trash', 'Spam', 'Trash', 'Spam', 'Erash', 'Dpam'].map((text, index) => (
             <ListItem button key={index}>
               <LetterAvatars avType='name' children={text}/>
             </ListItem>
@@ -154,7 +164,7 @@ function PermanentDrawerLeft(props) {
         >
           <AddIcon />
         </Button>
-        <BottomNavigation showLabels>
+        <BottomNavigation showLabels /*className={classes.bottomNavigation} */ >
             <BottomNavigationAction label='MyChats' icon={<RestoreIcon />} />
             <BottomNavigationAction label='Explore' icon={<ExploreIcon />} />
         </BottomNavigation>
@@ -185,6 +195,11 @@ function PermanentDrawerLeft(props) {
           nibh sit. Ornare aenean euismod elementum nisi quis eleifend. Commodo viverra maecenas
           accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam ultrices sagittis orci a.
         </Typography>
+        <div className={classes.messageInputWrapper}>
+            <Paper className={classes.messageInput} elevation={6}>
+              <Input fullWidth placeholder='Ваше сообщение' />
+            </Paper>
+        </div>
       </main>
     </div>
   );
