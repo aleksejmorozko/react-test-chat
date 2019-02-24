@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 
-import MiniDrawer from './MiniDrawer';
+import MiniDrawer from './components/MiniDrawer';
 
 class App extends Component {
   render() {
