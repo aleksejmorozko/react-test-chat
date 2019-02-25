@@ -10,9 +10,6 @@ import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import LetterAvatars from './LetterAvatars';
-//import SimpleBottomNavigation from './SimpleBottomNavigation';
-//import BottomNavigation, {BottomNavigationAction} from '@material-ui/core/BottomNavigation';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import RestoreIcon from '@material-ui/icons/Restore';
@@ -21,9 +18,10 @@ import AddIcon from '@material-ui/icons/Add';
 import Input from '@material-ui/core/Input';
 import Paper from '@material-ui/core/Paper';
 import {chats, messages} from './mock-data';
-
-const drawerWidth = 240;
-
+import Avatar from '@material-ui/core/Avatar';
+import ListItemText from '@material-ui/core/ListItemText';
+import { relative } from 'path';
+const drawerWidth = 320;
 const styles = theme => ({
   root: {
     display: 'flex',
@@ -36,13 +34,9 @@ const styles = theme => ({
     width: `calc(100% - ${drawerWidth}px)`,
     position: 'fixed',
   },
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0,    
-  },
   drawerPaper: {
     width: drawerWidth,
-    
+    position: relative,
     height: '100%',
   },
   toolbar: theme.mixins.toolbar,
@@ -52,9 +46,8 @@ const styles = theme => ({
     padding: theme.spacing.unit * 3,
   },
   chatList: {
-    height: 'calc(100% - 56px)',
+    height: `calc(100% - 56px)`,
     overflowY: 'scroll',
-  
   },
   drawerHeader:{
     ... theme.mixins.toolbar,
@@ -74,7 +67,9 @@ const styles = theme => ({
     paddingTop: '64px',
     height: '100%',
     overflow: 'hidden',
-    
+    width: `calc(100% - ${drawerWidth + theme.spacing.unit}px)`,
+    paddingLeft: `calc(${drawerWidth + theme.spacing.unit}px)`,
+    paddingRight: theme.spacing.unit,
   },
   messagesWrapper: {
     overflowX: 'scroll',
@@ -82,14 +77,15 @@ const styles = theme => ({
     width: '100%',
     paddingTop: theme.spacing.uint *3,
     paddingBottom: '120px',
+    
   },
   messageInputWrapper:{
     position: "fixed",
     left:'auto',
     right: 0,
     bottom: 0,
-    width: `calc(100% - ${drawerWidth+60}px)`,
-    padding: '30px 30px',
+    width: `calc(100% - ${drawerWidth + theme.spacing.unit*6}px)`,
+    padding: theme.spacing.unit * 3,
   },
   messageInput: {
     padding: theme.spacing.unit * 2,
@@ -98,7 +94,7 @@ const styles = theme => ({
     display: 'flex',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    padding: '${theme.spacing.unit}px ${theme.spacing.unit * 3}px',
+    padding: theme.spacing.unit,
   },
   messageWrapperFromMe:{
     justifyContent: 'flex-end',
@@ -151,9 +147,10 @@ function PermanentDrawerLeft(props) {
         <Divider />
     
         <List className={classes.chatList}>
-          {['All mail', 'Trash', 'Spam', 'Trash', 'Spam', 'Trash', 'Spam', 'Trash', 'Spam', 'Trash', 'Spam', 'Trash', 'Spam', 'Trash', 'Spam', 'Trash', 'Spam', 'Trash', 'Spam', 'Trash', 'Spam', 'Erash', 'Dpam'].map((text, index) => (
-            <ListItem button key={index}>
-              <LetterAvatars avType='name' children={text}/>
+          {chats.map((chats, index) => (
+            <ListItem key={index} button>
+              <Avatar>{chats.title && chats.title[0]}</Avatar>
+              <ListItemText primary = {chats.title} />
             </ListItem>
           ))}
         </List>
@@ -176,9 +173,9 @@ function PermanentDrawerLeft(props) {
           {messages && messages.map((message, index) => {
             const isMessageFromMe = message.sender === 'me';
             const userAvatar = (
-              <LetterAvatars avType='chat'>
+              <Avatar>
                 {message.sender[0]}
-              </LetterAvatars>
+              </Avatar>
             );
 
             return (
