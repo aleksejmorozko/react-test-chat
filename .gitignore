@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+/react-chat-api-serverDB
 
 # testing
 /coverage
